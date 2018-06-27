@@ -1,13 +1,15 @@
-const {inspect} = require('util');
-const {DELIMITER} = require('./delimiter');
+// @flow
+import {inspect} from 'util';
+import {DELIMITER} from './delimiter';
+import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
 
 /**
  * ゲーム状態履歴を表示する
  *
- * @param {GameState[]} gameStateHisory
+ * @param gameStateHistory ゲーム状態履歴
  */
-function printGameStateHistory(gameStateHisory) {
-  const message = gameStateHisory
+export function printGameStateHistory(gameStateHistory: GameState[]): void {
+  const message = gameStateHistory
     .map(v => inspect(v, {depth: null}))
     .join(DELIMITER);
 
@@ -15,5 +17,3 @@ function printGameStateHistory(gameStateHisory) {
   console.log(message);
   console.log(DELIMITER);
 }
-
-module.exports.printGameStateHistory = printGameStateHistory;

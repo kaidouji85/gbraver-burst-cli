@@ -1,5 +1,6 @@
-const DELIMITER = `
+// @flow
+
+/** デリミタ */
+export const DELIMITER = `
 ${'-'.repeat(100)}
 `;
-
-module.exports.DELIMITER = DELIMITER;
