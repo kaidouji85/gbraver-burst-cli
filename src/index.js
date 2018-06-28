@@ -3,17 +3,14 @@ import {start, progress, ArmDozers} from 'gbraver-burst-core';
 import RadLineSync from 'readline-sync';
 import{inspect} from 'util';
 import {printGameStateHistory} from './print-game-state-history';
+import {selectArmdozer} from "./select-armdozer";
 
-const armdozerIdList = ArmDozers.map(v => v.id);
-const players = ['player1', 'player2'].map(v => {
-  const selectIndex = RadLineSync.keyInSelect(armdozerIdList, `select ${v} armdozer`, {cancel: false});
-  const selectId = armdozerIdList[selectIndex];
-  const armdozer = ArmDozers.find(v => v.id === selectId);
-  return {
-    playerId: v,
-    armdozer: armdozer
-  };
-});
+const armdozer1 = selectArmdozer(ArmDozers, 'select player1 armdozer');
+const armdozer2 = selectArmdozer(ArmDozers, 'select player1 armdozer');
+const players = [
+  {plaeyrId: 'player01', armdozer: armdozer1},
+  {plaeyrId: 'player02', armdozer: armdozer2}
+];
 
 let stateHistory = start(players[0], players[1]);
 let count = 0;
