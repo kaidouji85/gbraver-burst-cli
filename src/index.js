@@ -2,7 +2,7 @@
 import {start, progress, ArmDozers} from 'gbraver-burst-core';
 import RadLineSync from 'readline-sync';
 import{inspect} from 'util';
-import {printGameStateHistory} from './print-game-state-history';
+import {gameStateHistoryView} from './view/game-state-history-view';
 import {selectArmdozer} from "./input/select-armdozer";
 import {selectCommand} from "./input/select-command";
 import type {Player} from "gbraver-burst-core/lib/player/player";
@@ -22,7 +22,7 @@ let stateHistory = start(players[0], players[1]);
 let count = 0;
 
 console.log('game start');
-printGameStateHistory(stateHistory);
+console.log(gameStateHistoryView(stateHistory));
 
 while(true) {
   if (100 <= count) {
@@ -46,7 +46,7 @@ while(true) {
   });
 
   stateHistory = progress(lastState, commandList);
-  printGameStateHistory(stateHistory);
+  console.log(gameStateHistoryView(stateHistory));
 
   const isContinueGame = RadLineSync.keyInYN('continue game?');
   if (!isContinueGame) {
