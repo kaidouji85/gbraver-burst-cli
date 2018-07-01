@@ -3,13 +3,19 @@ import {start, progress, ArmDozers} from 'gbraver-burst-core';
 import RadLineSync from 'readline-sync';
 import{inspect} from 'util';
 import {printGameStateHistory} from './print-game-state-history';
-import {selectArmdozer} from "./select-armdozer";
+import {selectArmdozer} from "./input/select-armdozer";
+import {selectCommand} from "./input/select-command";
+import type {Player} from "gbraver-burst-core/lib/player/player";
+import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/input-command";
+import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
+import type {Effect} from "gbraver-burst-core/lib/effect/index";
+import type {PlayerCommand} from "gbraver-burst-core/lib/command/player-command";
 
 const armdozer1 = selectArmdozer(ArmDozers, 'select player1 armdozer');
 const armdozer2 = selectArmdozer(ArmDozers, 'select player1 armdozer');
-const players = [
-  {plaeyrId: 'player01', armdozer: armdozer1},
-  {plaeyrId: 'player02', armdozer: armdozer2}
+const players: Player[] = [
+  {playerId: 'player01', armdozer: armdozer1},
+  {playerId: 'player02', armdozer: armdozer2}
 ];
 
 let stateHistory = start(players[0], players[1]);
@@ -27,19 +33,16 @@ while(true) {
     break;
   }
 
-  const lastState = stateHistory[stateHistory.length - 1];
-  if (lastState.effect.name !== 'InputCommand') {
+  const lastState: GameState = stateHistory[stateHistory.length - 1];
+  const effect: Effect = lastState.effect;
+  if (effect.name !== 'InputCommand') {
     break;
   }
+  const inputCommand: InputCommand = effect;
 
-  const commandList = lastState.effect.players.map(v => {
-    const commandNameList = v.command.map(v => inspect(v));
-    const selectIndex = RadLineSync.keyInSelect(commandNameList, `select ${v.playerId} command`, {cancel: false});
-    const command = v.command[selectIndex];
-    return {
-      playerId: v.playerId,
-      command: command
-    };
+  const commandList: PlayerCommand[] = inputCommand.players.map(v => {
+    const command = selectCommand(v.command, `select ${v.playerId} command`);
+    return {playerId: v.playerId, command};
   });
 
   stateHistory = progress(lastState, commandList);

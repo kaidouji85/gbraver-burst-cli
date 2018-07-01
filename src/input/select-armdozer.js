@@ -1,6 +1,7 @@
 // @flow
 
 import RadLineSync from "readline-sync";
+import type {Armdozer} from "gbraver-burst-core/lib/armdozer/armdozer";
 
 /**
  * アームドーザを選択する
