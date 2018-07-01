@@ -2,13 +2,13 @@
 
 import type {Player} from "gbraver-burst-core/lib/player/player";
 import {start, progress} from 'gbraver-burst-core';
-import {selectCommand} from "../input/select-command";
+import {selectCommand} from "../../input/select-command";
 import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
 import type {Effect} from "gbraver-burst-core/lib/effect/index";
 import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/input-command";
 import type {PlayerCommand} from "gbraver-burst-core/lib/command/player-command";
-import {isContinue} from "../input/is-continue";
-import {gameStateHistoryView} from "../view/game-state-history-view";
+import {isContinue} from "../../input/is-continue";
+import {gameStateHistoryView} from "./view/game-state-history-view";
 
 /** シーン開始メッセージ */
 export const START_MESSAGE =  `

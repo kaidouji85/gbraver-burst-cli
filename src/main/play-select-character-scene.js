@@ -1,7 +1,7 @@
 // @flow
 
 import type {Player} from "gbraver-burst-core/lib/player/player";
-import {SelectCharacterScene} from "../scene/select-character-scene";
+import {SelectCharacterScene} from "../scene/select-character-scene/index";
 import {ArmDozers} from "gbraver-burst-core";
 
 /**
