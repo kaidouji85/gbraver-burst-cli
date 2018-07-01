@@ -3,13 +3,7 @@
 import type {Armdozer} from "gbraver-burst-core/lib/armdozer/armdozer";
 import type {Player, PlayerId} from "gbraver-burst-core/lib/player/player";
 import {selectArmdozer} from "../../input/select-armdozer";
-
-/** シーン開始メッセージ */
-const START_MESSAGE = `
-${'-'.repeat(64)}
-character select
-${'-'.repeat(64)}
-`;
+import {START_MESSAGE} from "./view/start-message";
 
 /** コンストラクタのパラメータ */
 type Param = {

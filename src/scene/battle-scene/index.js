@@ -1,7 +1,7 @@
 // @flow
 
 import type {Player} from "gbraver-burst-core/lib/player/player";
-import {start, progress} from 'gbraver-burst-core';
+import {progress, start} from 'gbraver-burst-core';
 import {selectCommand} from "../../input/select-command";
 import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
 import type {Effect} from "gbraver-burst-core/lib/effect/index";
@@ -9,13 +9,7 @@ import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/inp
 import type {PlayerCommand} from "gbraver-burst-core/lib/command/player-command";
 import {isContinue} from "../../input/is-continue";
 import {gameStateHistoryView} from "./view/game-state-history-view";
-
-/** シーン開始メッセージ */
-export const START_MESSAGE =  `
-${'-'.repeat(64)}
-battle
-${'-'.repeat(64)}
-`;
+import {START_MESSAGE} from "./view/start-message";
 
 /** 最大ターン数 */
 export const MAX_COUNT = 100;
