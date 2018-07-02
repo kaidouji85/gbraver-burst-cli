@@ -1,23 +1,12 @@
 // @flow
 
-
 import {titleMessage} from "./message/title-message";
 
-type Param = {
-  version: string
-};
-
-/** タイトルシーン */
-export class TitleScene {
-  /** バージョン */
-  _version: string;
-
-  constructor(param: Param) {
-    this._version = param.version;
-  }
-
-  /** シーンを再生する */
-  play() {
-    console.log(titleMessage(this._version));
-  }
+/**
+ * タイトルシーンを再生する
+ *
+ * @param version 本ソフトウェアのバージョン
+ */
+export function titleScene(version: string): void {
+  console.log(titleMessage(version));
 }

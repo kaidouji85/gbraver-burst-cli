@@ -14,57 +14,46 @@ import {START_MESSAGE} from "./message/start-message";
 /** 最大ターン数 */
 export const MAX_COUNT = 100;
 
-/** コンストラクタのパラメータ */
-type Param = {
-  playerList: Player[]
-};
-
-/** 戦闘シーン */
-export class BattleScene {
-  /** プレイヤー情報 */
-  _playerList: Player[];
-
-  constructor(param: Param) {
-    this._playerList = param.playerList;
+/**
+ * 戦闘シーンを再生する
+ *
+ * @param playerList プレイヤー情報
+ */
+export function battleScene(playerList: Player[]) {
+  if (playerList.length !== 2) {
+    return;
   }
 
-  /** シーンを再生する */
-  play(): void {
-    if (this._playerList.length !== 2) {
-      return;
+  const initialState: GameState[] = start(playerList[0], playerList[1]);
+  if (initialState.length <= 0) {
+    return;
+  }
+  console.log(START_MESSAGE);
+  console.log(gameStateHistoryMessage(initialState));
+
+  let lastState: GameState = initialState[initialState.length - 1];
+  for (let count = 0; count < MAX_COUNT; count ++) {
+    const effect: Effect = lastState.effect;
+    if (effect.name !== 'InputCommand') {
+      break;
     }
 
-    const initialState: GameState[] = start(this._playerList[0], this._playerList[1]);
-    if (initialState.length <= 0) {
-      return;
+    const inputCommand: InputCommand = effect;
+    const commandList: PlayerCommand[] = inputCommand.players
+      .map(v => {
+        const command = selectCommand(v.command, `${v.playerId}のコマンドを選択してください`);
+        return {playerId: v.playerId, command}
+      });
+    const updatedState: GameState[] = progress(lastState, commandList);
+    if (updatedState.length <= 0) {
+      break;
     }
-    console.log(START_MESSAGE);
-    console.log(gameStateHistoryMessage(initialState));
 
-    let lastState: GameState = initialState[initialState.length - 1];
-    for (let count = 0; count < MAX_COUNT; count ++) {
-      const effect: Effect = lastState.effect;
-      if (effect.name !== 'InputCommand') {
-        break;
-      }
-
-      const inputCommand: InputCommand = effect;
-      const commandList: PlayerCommand[] = inputCommand.players
-        .map(v => {
-          const command = selectCommand(v.command, `${v.playerId}のコマンドを選択してください`);
-          return {playerId: v.playerId, command}
-        });
-      const updatedState: GameState[] = progress(lastState, commandList);
-      if (updatedState.length <= 0) {
-        break;
-      }
-
-      console.log(gameStateHistoryMessage(updatedState));
-      if (!isContinue()) {
-        break;
-      }
-
-      lastState = updatedState[updatedState.length - 1];
+    console.log(gameStateHistoryMessage(updatedState));
+    if (!isContinue()) {
+      break;
     }
+
+    lastState = updatedState[updatedState.length - 1];
   }
 }
