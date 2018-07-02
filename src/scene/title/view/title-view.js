@@ -8,7 +8,7 @@ export function titleView(version: string) {
   return `
 ${'='.repeat(64)}
 
-GBRAVER BURST CLI
+Gブレイバー バースト CLI
 version: ${version}
 
 ${'='.repeat(64)}  

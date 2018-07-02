@@ -31,7 +31,7 @@ export class SelectCharacterScene {
   play(): Player[] {
     console.log(START_MESSAGE);
     return this._playerIdList.map(playerId => {
-      const armdozer = selectArmdozer(this._armdozerList, `select ${playerId} armdozer`);
+      const armdozer = selectArmdozer(this._armdozerList, `${playerId}のアームドーザを選択してください`);
       return {playerId, armdozer};
     });
 

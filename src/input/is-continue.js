@@ -8,5 +8,5 @@ import RadLineSync from "readline-sync";
  * @return trueでゲームを続ける
  */
 export function isContinue(): boolean {
-  return RadLineSync.keyInYN('is continue game?')
+  return RadLineSync.keyInYN('ゲームを続けますか?')
 }

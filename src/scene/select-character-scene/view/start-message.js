@@ -3,6 +3,6 @@
 /** シーン開始メッセージ */
 export const START_MESSAGE = `
 ${'='.repeat(64)}
-character select
+キャラクター選択
 ${'='.repeat(64)}
 `;

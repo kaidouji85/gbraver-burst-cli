@@ -3,6 +3,7 @@
 import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
 import {inspect} from 'util';
 import {playerStateView} from "./player-state-view";
+import {effectView} from "./effect-view";
 
 /** デリミタ */
 const DELIMITER = '-'.repeat(32);
@@ -14,9 +15,9 @@ export function gameStateView(gameState: GameState): string {
 ${DELIMITER}
 `);
 
-  return `activePlayer: ${gameState.activePlayerId}
+  return `手番プレイヤー: ${gameState.activePlayerId}
 ${DELIMITER}  
-effect    : ${inspect(gameState.effect)}
+${effectView(gameState.effect)}
 ${DELIMITER}
 ${players}`;
 }
