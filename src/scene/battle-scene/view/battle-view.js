@@ -1,0 +1,14 @@
+// @flow
+
+import type {Battle} from "gbraver-burst-core/lib/effect/battle/effect/index";
+
+/**
+ * 戦闘結果をコマンドライン用に整形する
+ *
+ * @param effect 戦闘結果
+ * @return 整形結果
+ */
+export function battleView(effect: Battle): string {
+  // TODO 戦闘効果ごとにビューを呼び分ける
+  return 'バトル';
+}
