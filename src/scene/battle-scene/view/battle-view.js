@@ -9,6 +9,5 @@ import type {Battle} from "gbraver-burst-core/lib/effect/battle/effect/index";
  * @return 整形結果
  */
 export function battleView(effect: Battle): string {
-  // TODO 戦闘効果ごとにビューを呼び分ける
-  return 'バトル';
+  return `攻撃(${effect.attackerBattery}) -> 防御(${effect.defenderBattery})`;
 }
