@@ -1,7 +1,7 @@
 // @flow
 
 
-import {titleView} from "./view/title-view";
+import {titleMessage} from "./message/title-message";
 
 type Param = {
   version: string
@@ -18,6 +18,6 @@ export class TitleScene {
 
   /** シーンを再生する */
   play() {
-    console.log(titleView(this._version));
+    console.log(titleMessage(this._version));
   }
 }

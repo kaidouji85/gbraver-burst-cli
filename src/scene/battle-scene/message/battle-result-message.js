@@ -16,7 +16,7 @@ import type {
  * @param result 戦闘結果
  * @return 整形結果
  */
-export function battleResultView(result: BattleResult): string {
+export function battleResultMessage(result: BattleResult): string {
   switch (result.name) {
     case 'NormalHit':
       return normalHit(result);

@@ -4,7 +4,7 @@
  * @param version バージョン
  * @return コンソールに表示するタイトル
  */
-export function titleView(version: string) {
+export function titleMessage(version: string) {
   return `
 ${'='.repeat(64)}
 

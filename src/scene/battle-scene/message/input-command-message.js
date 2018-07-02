@@ -7,6 +7,6 @@ import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/inp
  * @param effect コマンド入力効果
  * @return 整形結果
  */
-export function inputCommandView(effect: InputCommand): string {
+export function inputCommandMessage(effect: InputCommand): string {
   return 'コマンド入力';
 }

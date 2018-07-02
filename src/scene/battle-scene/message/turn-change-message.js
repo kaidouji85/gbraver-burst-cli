@@ -8,6 +8,6 @@ import type {TurnChange} from "gbraver-burst-core/lib/effect/turn-change/turn-ch
  * @param effect ターンチェンジ結果
  * @return 整形結果
  */
-export function turnChangeView(effect: TurnChange): string {
+export function turnChangeMessage(effect: TurnChange): string {
   return 'ターンチェンジ';
 }
