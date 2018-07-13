@@ -8,7 +8,7 @@ export function titleMessage(version: string) {
   return `
 ${'='.repeat(64)}
 
-Gブレイバー バースト CLI
+GBRSV バースト CLI
 version: ${version}
 
 ${'='.repeat(64)}  
