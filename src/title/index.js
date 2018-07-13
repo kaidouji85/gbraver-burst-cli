@@ -1,6 +1,6 @@
 // @flow
 
-import {titleMessage} from "./message/title-message";
+import {titleMessage} from "./title-message";
 
 /**
  * タイトルシーンを再生する
