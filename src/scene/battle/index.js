@@ -9,7 +9,6 @@ import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/inp
 import type {PlayerCommand} from "gbraver-burst-core/lib/command/player-command";
 import {isContinue} from "../../input/is-continue";
 import {gameStateHistoryMessage} from "./message/game-state-history-message";
-import {START_MESSAGE} from "./message/start-message";
 
 /** 最大ターン数 */
 export const MAX_COUNT = 100;
@@ -28,7 +27,6 @@ export function battleScene(playerList: Player[]) {
   if (initialState.length <= 0) {
     return;
   }
-  console.log(START_MESSAGE);
   console.log(gameStateHistoryMessage(initialState));
 
   let lastState: GameState = initialState[initialState.length - 1];
