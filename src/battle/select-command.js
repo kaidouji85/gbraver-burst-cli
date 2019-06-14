@@ -38,10 +38,10 @@ function commandMessage(command: Command): string {
 
 /** バッテリー */
 function battery(command: BatteryCommand): string {
-  return `バッテリー: ${command.battery}`;
+  return `Battery: ${command.battery}`;
 }
 
 /** バースト */
 function burst(command: BurstCommand): string {
-  return 'バースト';
+  return 'Burst';
 }
