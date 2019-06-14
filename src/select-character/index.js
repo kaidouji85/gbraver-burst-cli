@@ -13,7 +13,7 @@ import {selectArmdozer} from "./select-armdozer";
  */
 export function selectCharacterScene(playerIdList: PlayerId[], armdozerList: Armdozer[]): Player[] {
   const playerList = playerIdList.map(playerId => {
-    const armdozer = selectArmdozer(armdozerList, `${playerId}のアームドーザを選択してください`);
+    const armdozer = selectArmdozer(armdozerList, `$select {playerId} armdozer`);
     return {playerId, armdozer};
   });
   return playerList;
