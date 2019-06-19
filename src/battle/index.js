@@ -39,7 +39,9 @@ export function battleScene(playerList: Player[]) {
     const inputCommand: InputCommand = effect;
     const commandList: PlayerCommand[] = inputCommand.players
       .map(v => {
-        const command = selectCommand(v.command, `${v.playerId}のコマンドを選択してください`);
+        const command = v.selectable
+          ? selectCommand(v.command, `select ${v.playerId} command`)
+          : v.nextTurnCommand;
         return {playerId: v.playerId, command}
       });
     const updatedState: GameState[] = progress(lastState, commandList);
