@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "gbraver-burst-core": "^0.4.1",
+    "gbraver-burst-core": "^0.4.2",
     "readline-sync": "^1.4.9"
   },
   "devDependencies": {
