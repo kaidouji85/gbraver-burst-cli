@@ -49,11 +49,14 @@ export function battleScene(playerList: Player[]) {
       break;
     }
 
+    lastState = updatedState[updatedState.length - 1];
     console.log(gameStateHistoryMessage(updatedState));
+    if (lastState.effect.name === 'GameEnd') {
+      return;
+    }
+
     if (!isContinue()) {
       break;
     }
-
-    lastState = updatedState[updatedState.length - 1];
   }
 }
