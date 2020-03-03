@@ -1,9 +1,7 @@
 // @flow
 
 import RadLineSync from "readline-sync";
-import type {Command} from "gbraver-burst-core";
-import type {BatteryCommand} from "gbraver-burst-core";
-import type {BurstCommand} from "gbraver-burst-core";
+import type {BatteryCommand, BurstCommand, Command} from "gbraver-burst-core";
 import {inspect} from 'util';
 
 /**

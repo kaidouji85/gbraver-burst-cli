@@ -2,10 +2,7 @@
 
 import type {Player} from "gbraver-burst-core/lib/player/player";
 import {selectCommand} from "./select-command";
-import type {GameState} from "gbraver-burst-core";
-import type {Effect} from "gbraver-burst-core";
-import type {InputCommand} from "gbraver-burst-core";
-import type {PlayerCommand} from "gbraver-burst-core";
+import type {Effect, GameState, InputCommand, PlayerCommand} from "gbraver-burst-core";
 import {GbraverBurstCore} from "gbraver-burst-core";
 import {isContinue} from "./is-continue";
 import {gameStateHistoryMessage} from "./game-state-history-message";
