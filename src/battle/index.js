@@ -38,11 +38,18 @@ export function battleScene(playerList: Player[]) {
 
     const inputCommand: InputCommand = effect;
     const commandList: PlayerCommand[] = inputCommand.players
-      .map(v => {
-        const command = v.selectable
-          ? selectCommand(v.command, `select ${v.playerId} command`)
-          : v.nextTurnCommand;
-        return {playerId: v.playerId, command}
+      .map(currentCommand => {
+        const currentPlayer = playerList.find(v => v.playerId === currentCommand.playerId);
+        const armdozerName = currentPlayer
+          ? currentPlayer.armdozer.name
+          : 'Not Found';
+        const currentRole = lastState.activePlayerId === currentCommand.playerId
+          ? '攻撃側'
+          : '防御側';
+        const command = currentCommand.selectable
+          ? selectCommand(currentCommand.command, `select ${currentCommand.playerId} command. ${armdozerName}/${currentRole}`)
+          : currentCommand.nextTurnCommand;
+        return {playerId: currentCommand.playerId, command}
       });
     const updatedState: GameState[] = game.progress(lastState, commandList);
     if (updatedState.length <= 0) {
