@@ -7,6 +7,6 @@ import {titleMessage} from "./title-message";
  *
  * @param version 本ソフトウェアのバージョン
  */
-export function titleScene(version: string): void {
-  console.log(titleMessage(version));
+export function titleScene(): void {
+  console.log(titleMessage());
 }
