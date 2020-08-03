@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node ./src/index.js",
-    "flow": "flow check"
+    "type-check": "flow check"
   },
-  "author": "",
+  "author": "Y.Takeuchi",
   "license": "ISC",
   "dependencies": {
-    "gbraver-burst-core": "^1.2.12",
+    "gbraver-burst-core": "../gbraver-burst-core",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {
