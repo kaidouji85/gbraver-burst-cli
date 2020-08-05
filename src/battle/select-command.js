@@ -1,10 +1,9 @@
 // @flow
 
 import RadLineSync from "readline-sync";
-import type {Command} from "gbraver-burst-core/lib/command/command";
-import type {BatteryCommand} from "gbraver-burst-core/lib/command/battery";
-import type {BurstCommand} from "gbraver-burst-core/lib/command/burst";
+import type {BatteryCommand, BurstCommand, Command} from "gbraver-burst-core";
 import {inspect} from 'util';
+import type {PilotSkillCommand} from "gbraver-burst-core/lib/command/pilot-skill";
 
 /**
  * コマンド選択を実行する
@@ -31,6 +30,8 @@ function commandMessage(command: Command): string {
       return battery(command);
     case 'BURST_COMMAND':
       return burst(command);
+    case 'PILOT_SKILL_COMMAND':
+      return pilotSkill(command);
     default:
       return inspect(command, {depth: null});
   }
@@ -44,4 +45,9 @@ function battery(command: BatteryCommand): string {
 /** バースト */
 function burst(command: BurstCommand): string {
   return 'Burst';
+}
+
+/** パイロットスキル */
+function pilotSkill(command: PilotSkillCommand): string {
+  return 'PilotSkill';
 }

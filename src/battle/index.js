@@ -1,14 +1,12 @@
 // @flow
 
 import type {Player} from "gbraver-burst-core/lib/player/player";
-import {progress, start} from 'gbraver-burst-core';
 import {selectCommand} from "./select-command";
-import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
-import type {Effect} from "gbraver-burst-core/lib/effect/index";
-import type {InputCommand} from "gbraver-burst-core/lib/effect/input-command/input-command";
-import type {PlayerCommand} from "gbraver-burst-core/lib/command/player-command";
+import type {Effect, GameState, InputCommand, PlayerCommand} from "gbraver-burst-core";
+import {GbraverBurstCore} from "gbraver-burst-core";
 import {isContinue} from "./is-continue";
 import {gameStateHistoryMessage} from "./game-state-history-message";
+
 
 /** 最大ターン数 */
 export const MAX_COUNT = 100;
@@ -19,11 +17,13 @@ export const MAX_COUNT = 100;
  * @param playerList プレイヤー情報
  */
 export function battleScene(playerList: Player[]) {
+  const game = new GbraverBurstCore();
+
   if (playerList.length !== 2) {
     return;
   }
 
-  const initialState: GameState[] = start(playerList[0], playerList[1]);
+  const initialState: GameState[] = game.start(playerList[0], playerList[1]);
   if (initialState.length <= 0) {
     return;
   }
@@ -38,13 +38,20 @@ export function battleScene(playerList: Player[]) {
 
     const inputCommand: InputCommand = effect;
     const commandList: PlayerCommand[] = inputCommand.players
-      .map(v => {
-        const command = v.selectable
-          ? selectCommand(v.command, `select ${v.playerId} command`)
-          : v.nextTurnCommand;
-        return {playerId: v.playerId, command}
+      .map(currentCommand => {
+        const currentPlayer = playerList.find(v => v.playerId === currentCommand.playerId);
+        const armdozerName = currentPlayer
+          ? currentPlayer.armdozer.name
+          : 'Not Found';
+        const currentRole = lastState.activePlayerId === currentCommand.playerId
+          ? '攻撃側'
+          : '防御側';
+        const command = currentCommand.selectable
+          ? selectCommand(currentCommand.command, `select ${currentCommand.playerId} command. ${armdozerName}/${currentRole}`)
+          : currentCommand.nextTurnCommand;
+        return {playerId: currentCommand.playerId, command}
       });
-    const updatedState: GameState[] = progress(lastState, commandList);
+    const updatedState: GameState[] = game.progress(lastState, commandList);
     if (updatedState.length <= 0) {
       break;
     }

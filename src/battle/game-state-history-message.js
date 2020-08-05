@@ -1,6 +1,6 @@
 // @flow
 import {inspect} from 'util';
-import type {GameState} from "gbraver-burst-core/lib/game-state/game-state";
+import type {GameState} from "gbraver-burst-core";
 
 const DELIMITER = `
 ${'-'.repeat(64)}
