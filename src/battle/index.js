@@ -17,13 +17,11 @@ export const MAX_COUNT = 100;
  * @param playerList プレイヤー情報
  */
 export function battleScene(playerList: Player[]) {
-  const game = new GbraverBurstCore();
-
   if (playerList.length !== 2) {
     return;
   }
-
-  const initialState: GameState[] = game.start(playerList[0], playerList[1]);
+  const game = new GbraverBurstCore([playerList[0], playerList[1]]);
+  const initialState = game.stateHistory();
   if (initialState.length <= 0) {
     return;
   }
@@ -51,7 +49,7 @@ export function battleScene(playerList: Player[]) {
           : currentCommand.nextTurnCommand;
         return {playerId: currentCommand.playerId, command}
       });
-    const updatedState: GameState[] = game.progress(lastState, commandList);
+    const updatedState: GameState[] = game.progress(commandList);
     if (updatedState.length <= 0) {
       break;
     }
