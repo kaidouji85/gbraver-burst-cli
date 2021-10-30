@@ -3,7 +3,7 @@
 import type {Player} from "gbraver-burst-core/lib/player/player";
 import {selectCommand} from "./select-command";
 import type {Effect, GameState, InputCommand, PlayerCommand} from "gbraver-burst-core";
-import {GbraverBurstCore} from "gbraver-burst-core";
+import {startGbraverBurst} from "gbraver-burst-core";
 import {isContinue} from "./is-continue";
 import {gameStateHistoryMessage} from "./game-state-history-message";
 
@@ -20,7 +20,7 @@ export function battleScene(playerList: Player[]) {
   if (playerList.length !== 2) {
     return;
   }
-  const game = new GbraverBurstCore([playerList[0], playerList[1]]);
+  const game = new startGbraverBurst([playerList[0], playerList[1]]);
   const initialState = game.stateHistory();
   if (initialState.length <= 0) {
     return;
@@ -49,7 +49,7 @@ export function battleScene(playerList: Player[]) {
           : currentCommand.nextTurnCommand;
         return {playerId: currentCommand.playerId, command}
       });
-    const updatedState: GameState[] = game.progress(commandList);
+    const updatedState: GameState[] = game.progress([commandList[0], commandList[1]]);
     if (updatedState.length <= 0) {
       break;
     }
